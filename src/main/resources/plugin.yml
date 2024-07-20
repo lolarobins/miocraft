@@ -1,0 +1,15 @@
+main: sh.lola.miocraft.TheGays
+name: miocraft
+author: lolasnotunix
+version: 1.0
+api-version: 1.20
+description: funny lil custom plugin for the gay miocraft thing
+commands:
+  colour:
+    description: change name colour
+    usage: /colour
+    aliases: [color]
+  displayname:
+    description: change your display name
+    usage: /displayname [name]
+    aliases: [nick, nickname]
