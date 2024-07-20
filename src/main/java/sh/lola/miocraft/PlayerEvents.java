@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -88,6 +89,13 @@ public class PlayerEvents implements Listener {
                 .broadcast(new ComponentBuilder(name)
                         .append(TextComponent.fromLegacyText(ChatColor.GRAY + ": " + ChatColor.RESET + e.getMessage()))
                         .create());
+    }
+
+    @EventHandler
+    public void deathEvent(PlayerDeathEvent e) {
+        PlayerData data = PlayerData.get(e.getEntity());
+        data.deaths++;
+        e.setDeathMessage(e.getDeathMessage() + " (deaths: " + PlayerData.get(e.getEntity()).deaths + ")");
     }
 
 }

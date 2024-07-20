@@ -21,7 +21,7 @@ public class PlayerData {
 
     // stored data
     String lastName, displayName, color;
-    long lastOnline;
+    long lastOnline, deaths;
 
     // used only by static get method to avoid duplicate classes for single uuid in
     // cache
@@ -48,6 +48,7 @@ public class PlayerData {
             displayName = "";
             color = "#eeeeee";
             lastOnline = Instant.now().getEpochSecond();
+            deaths = 0;
 
             saveData();
         }
@@ -66,6 +67,7 @@ public class PlayerData {
         displayName = dataCfg.getString("displayName");
         color = dataCfg.getString("color");
         lastOnline = dataCfg.getLong("lastOnline");
+        deaths = dataCfg.getLong("deaths");
     }
 
     void saveData() {
@@ -73,6 +75,7 @@ public class PlayerData {
         dataCfg.set("displayName", displayName);
         dataCfg.set("color", color);
         dataCfg.set("lastOnline", lastOnline);
+        dataCfg.set("deaths", deaths);
 
         try {
             dataCfg.save(dataFile);
